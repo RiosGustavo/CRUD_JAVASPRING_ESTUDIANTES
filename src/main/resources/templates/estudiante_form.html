@@ -1,0 +1,66 @@
+
+<html xmlns:th="https://www.thymeleaf.org/">
+    <head>
+        <title>Listado de Estudiantes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/formulario.css">
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/index.css">
+
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Control Estudiantes</a>
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           th:href="@{/estudiante}">Control Estudiantes</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div clas="container">
+            <div class"row">
+                <h1>Lista de Estudiantes</h1>
+            </div>
+            <div class="row">
+                <div>
+                    <a th:href="@{/estudiante/registrar}" class="btn btn-primary btn-sm mb3">Agregar Estudiante</a> 
+                </div>
+                   
+            </div>
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th >Nombre</th>
+                        <th >Apellido</th>
+                        <th >Email</th>
+                        <th >Acciones</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--creamos un foreach para recorrer y motrar la lista de estudiantes-->
+                    <tr th:each="estudiante :${estudiantes}" >
+                        <td th:text="${estudiante.nombre}">Nombre</td>
+                        <td th:text="${estudiante.apellido}">Apellido</td>
+                        <td th:text="${estudiante.email}">email</td>
+                        <td> 
+                            <a th:href="@{/estudiante/modificar/{id}(id=${estudiante.id})}" class="btn btn-info">Editar</a>
+                            <a th:href="@{/estudiante/{id}(id=${estudiante.id})}" class="btn btn-danger">Eliminar</a>
+
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </body>
+</html>

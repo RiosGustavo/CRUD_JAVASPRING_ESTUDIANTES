@@ -1,0 +1,85 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+    <head>
+        <title>Editar de Estudiantes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/formulario.css">
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/index.css">
+
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Control Estudiantes</a>
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           th:href="@{/estudiante}">Control Estudiantes</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid m-5 contenedor">
+            <!-- cuadno un Usuario haga click en submit se dispara una accion traves del metodo post
+           al servidor con  la url /periodista/registro el metodo post envia la informacion a esta url
+           los datos viajan a traves de una variables name="nombreUsuario"este nombre tiene que coincidir
+            con el que llega por parametro a la clase conctrolador en este caso periodistaControlador
+            -->
+            <form class="formulario" th:action="@{/estudiante}" th:object="${estudiante}" method="POST" >
+
+
+                <div class="form-group my-3">
+                    <h1 class="card-title" align="center">Edicion Estudiante</h1>
+                </div>
+
+                <div class="card-body">
+                    <form th:action="@{/estudiante/{id}(id=${estudiante.id})}"  th:object="${estudiante}" method="POST">
+                        <div class="form-group">
+                            <label>Nombre :</label>
+                            <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Nombre">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Apellido :</label>
+                            <input type="text" name="apellido" th:field="*{apellido}" class="form-control" placeholder="Apellido">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email :</label>
+                            <input type="email" name="email" th:field="*{email}" class="form-control" placeholder="Email">
+
+                        </div>
+                        <div class="box-footer">
+                            <button  class="btn btn-success">Guardar</button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+
+
+                
+            </form>
+
+
+            <section class=" text-center container">
+                <div class="row mt-3">
+                    <div class="divVolver">
+                        <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </body>
+</html>
